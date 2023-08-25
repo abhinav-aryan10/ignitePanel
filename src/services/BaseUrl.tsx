@@ -8,7 +8,7 @@ import { logoutUser, refreshTokenUtil } from "../utils/AwsCognito.util";
 import { RoutePaths } from "../constants/Routepaths.constants";
 // import { version as applicationVersion } from '../../../release/app/package.json';
 
-let token = "";
+// let token = "";
 
 // Used only for local development when serve from mockoon is true
 export const BaseUrl = axios.create({
@@ -62,7 +62,7 @@ export const Interceptor = () => {
         !String(req.url).includes("roster-authentication")
       ) {
         // Add configurations here
-        token = getAccessToken();
+        // token = getAccessToken();
         const isExpired = getTokenExpiry();
         if (isExpired) {
           try {
@@ -145,8 +145,8 @@ export const Interceptor = () => {
 //   },
 // });
 const INSIGHT_URL_STAGING = "https://rmsstaging.hatchearlychildhood.com";
-const INSIGHT_URL_PROD = "https://rms.hatchearlychildhood.com";
-const INSIGHT_URL_QA = "https://rmsqa.hatchearlychildhood.com";
+// const INSIGHT_URL_PROD = "https://rms.hatchearlychildhood.com";
+// const INSIGHT_URL_QA = "https://rmsqa.hatchearlychildhood.com";
 
 // Staging
 const INSIGHT_URL = INSIGHT_URL_STAGING;

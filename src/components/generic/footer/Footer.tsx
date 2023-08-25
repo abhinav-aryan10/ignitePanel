@@ -1,117 +1,117 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-named-as-default */
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import "./Footer.scss";
-import buttonClickSound from "../../../utils/ButtonClick.util";
-import { RoutePaths } from "../../../constants/Routepaths.constants";
-import exitToDesktopUtil from "../../../utils/ExitToDesktop.util";
-import { logoutUser } from "../../../utils/AwsCognito.util";
-import UiLables from "../../../constants/UiLables.constants";
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import './Footer.scss'
+import buttonClickSound from '../../../utils/ButtonClick.util'
+import { RoutePaths } from '../../../constants/Routepaths.constants'
+// import exitToDesktopUtil from "../../../utils/ExitToDesktop.util";
+// import { logoutUser } from "../../../utils/AwsCognito.util";
+import UiLables from '../../../constants/UiLables.constants'
 // import Popover from '../../generic/';
-import OutsideAlerter from "../outside-alerter/OutsideAlerter";
+import OutsideAlerter from '../outside-alerter/OutsideAlerter'
 // import { version as applicationVersion } from '../../../../../release/app/package.json';
-import React from "react";
+import React from 'react'
 
 interface IProps {
-  productDetails: any;
-  loginDetails: any;
-  isTeacherDashboard: boolean;
-  userName: string;
-  setLoginDetails: (data: any) => void;
-  stopInactivityTimer: () => void;
+  productDetails: any
+  loginDetails: any
+  isTeacherDashboard: boolean
+  userName: string
+  setLoginDetails: (data: any) => void
+  stopInactivityTimer: () => void
 }
 
 const Footer: React.FC<IProps> = ({
   productDetails,
-  isTeacherDashboard,
-  userName,
-  setLoginDetails,
-  loginDetails,
-  stopInactivityTimer,
-}: IProps) => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  isTeacherDashboard
+} // userName,
+// setLoginDetails,
+// loginDetails,
+// stopInactivityTimer,
+: IProps) => {
+  const location = useLocation()
+  // const navigate = useNavigate();
 
-  const [exitPopupStatus, setExitPopupStatus] = useState(false);
-  const [logoutPopupStatus, setLogoutPopupStatus] = useState(false);
-  const [exitToDesktopPressed, setExitToDesktopPressed] = useState(false);
-  const [logoutPressed, setLogoutPressed] = useState(false);
+  const [exitPopupStatus, setExitPopupStatus] = useState(false)
+  const [logoutPopupStatus, setLogoutPopupStatus] = useState(false)
+  const [exitToDesktopPressed, setExitToDesktopPressed] = useState(false)
+  const [logoutPressed, setLogoutPressed] = useState(false)
 
   const setExitPopup = (clickEvent: { detail: number }) => {
     if (clickEvent.detail !== 0) {
-      buttonClickSound();
-      setExitPopupStatus(!exitPopupStatus);
+      buttonClickSound()
+      setExitPopupStatus(!exitPopupStatus)
     }
-  };
+  }
 
-  const setExitPopupAsRef = () => {
-    setExitPopupStatus(!exitPopupStatus);
-  };
+  // const setExitPopupAsRef = () => {
+  //   setExitPopupStatus(!exitPopupStatus);
+  // };
 
   const setLogoutPopup = (clickEvent: { detail: number }) => {
     if (clickEvent.detail !== 0) {
-      buttonClickSound();
-      setLogoutPopupStatus(!logoutPopupStatus);
+      buttonClickSound()
+      setLogoutPopupStatus(!logoutPopupStatus)
     }
-  };
+  }
 
-  const setLogoutPopupAsRef = () => {
-    setLogoutPopupStatus(!logoutPopupStatus);
-  };
+  // const setLogoutPopupAsRef = () => {
+  //   setLogoutPopupStatus(!logoutPopupStatus);
+  // };
 
   const exitApplication = (keyEvent: { key: string }) => {
-    if (keyEvent.key === "Enter") {
-      buttonClickSound();
-      setExitPopupStatus(!exitPopupStatus);
+    if (keyEvent.key === 'Enter') {
+      buttonClickSound()
+      setExitPopupStatus(!exitPopupStatus)
       setTimeout(() => {
-        document.getElementById("exitToDesktopYesButton")?.focus();
-      }, 10);
+        document.getElementById('exitToDesktopYesButton')?.focus()
+      }, 10)
     }
-  };
+  }
 
   const closeExitPopup = () => {
     setTimeout(() => {
-      setExitPopupStatus(false);
-    });
-  };
+      setExitPopupStatus(false)
+    })
+  }
 
   const closeLogoutPopup = () => {
     setTimeout(() => {
-      setLogoutPopupStatus(false);
-    });
-  };
+      setLogoutPopupStatus(false)
+    })
+  }
 
-  const exitToDesktop = () => {
-    setTimeout(() => {
-      exitToDesktopUtil();
-    }, 200);
-  };
+  // const exitToDesktop = () => {
+  //   setTimeout(() => {
+  //     exitToDesktopUtil();
+  //   }, 200);
+  // };
 
-  const logoutToDesktop = () => {
-    console.log("clicked on logoutToDesktop");
+  // const logoutToDesktop = () => {
+  //   console.log("clicked on logoutToDesktop");
 
-    setTimeout(() => {
-      logoutUser();
-      localStorage.removeItem("userIdToken");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("userIdtokenExpiry");
-      localStorage.removeItem("email");
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("sub");
-      sessionStorage.removeItem("upgradePopupDisplayed");
-      setLoginDetails({});
-      // window.electron.ipcRenderer.sendMessage(
-      //   'remove_classlink_clever_cookies',
-      //   []
-      // );
-      navigate(RoutePaths.LOGIN_CARD);
-    }, 100);
-  };
+  //   setTimeout(() => {
+  //     logoutUser();
+  //     localStorage.removeItem("userIdToken");
+  //     localStorage.removeItem("refreshToken");
+  //     localStorage.removeItem("userIdtokenExpiry");
+  //     localStorage.removeItem("email");
+  //     localStorage.removeItem("accessToken");
+  //     localStorage.removeItem("userId");
+  //     localStorage.removeItem("sub");
+  //     sessionStorage.removeItem("upgradePopupDisplayed");
+  //     setLoginDetails({});
+  //     // window.electron.ipcRenderer.sendMessage(
+  //     //   'remove_classlink_clever_cookies',
+  //     //   []
+  //     // );
+  //     navigate(RoutePaths.LOGIN_CARD);
+  //   }, 100);
+  // };
 
   return (
-    <div className="footer_container">
+    <div className='footer_container'>
       <div>
         {RoutePaths.EULA !== location.pathname &&
         RoutePaths.PRIVACY_POLICY !== location.pathname &&
@@ -121,9 +121,7 @@ const Footer: React.FC<IProps> = ({
             {exitPopupStatus ? (
               <div
                 className={
-                  isTeacherDashboard
-                    ? "footer_container_exit_to_desktop_dashboard_after"
-                    : "footer_container_exit_to_desktop_login_after"
+                  isTeacherDashboard ? 'footer_container_exit_to_desktop_dashboard_after' : 'footer_container_exit_to_desktop_login_after'
                 }
               >
                 <OutsideAlerter setExitPopupRef={closeExitPopup}>
@@ -145,7 +143,7 @@ const Footer: React.FC<IProps> = ({
               <></>
             )}
             {logoutPopupStatus ? (
-              <div className="footer_container_logout_dashboard_after">
+              <div className='footer_container_logout_dashboard_after'>
                 <OutsideAlerter setExitPopupRef={closeLogoutPopup}>
                   {/* <Popover
                     message={UiLables.LABELS.ARE_YOU_SURE_TO_LOGOUT}
@@ -169,23 +167,19 @@ const Footer: React.FC<IProps> = ({
             ) : (
               <button
                 onPointerDown={() => {
-                  setExitToDesktopPressed(true);
+                  setExitToDesktopPressed(true)
                 }}
                 onPointerUp={() => {
-                  setExitToDesktopPressed(false);
+                  setExitToDesktopPressed(false)
                 }}
                 onPointerOut={() => {
-                  setExitToDesktopPressed(false);
+                  setExitToDesktopPressed(false)
                 }}
-                className={`${
-                  exitToDesktopPressed
-                    ? "thick_purple_btn_pressed"
-                    : "thick_purple_btn"
-                } footer_container_exit_to_desktop`}
+                className={`${exitToDesktopPressed ? 'thick_purple_btn_pressed' : 'thick_purple_btn'} footer_container_exit_to_desktop`}
                 onKeyDown={exitApplication}
                 onClick={setExitPopup}
-                type="button"
-                style={exitPopupStatus ? { pointerEvents: "none" } : {}}
+                type='button'
+                style={exitPopupStatus ? { pointerEvents: 'none' } : {}}
               >
                 {UiLables.LABELS.EXIT_TO_DESKTOP}
               </button>
@@ -193,7 +187,7 @@ const Footer: React.FC<IProps> = ({
             <div>
               {isTeacherDashboard ? (
                 <div>
-                  <div className="footer_container_user_name">
+                  <div className='footer_container_user_name'>
                     {/* {JSON.parse(localStorage.getItem("userDetail"))?.payload
                       ?.data?.user[0]?.firstName || ""}{" "}
                     {JSON.parse(localStorage.getItem("userDetail"))?.payload
@@ -202,45 +196,39 @@ const Footer: React.FC<IProps> = ({
                   <div>
                     <button
                       onPointerDown={() => {
-                        setLogoutPressed(true);
+                        setLogoutPressed(true)
                       }}
                       onPointerUp={() => {
-                        setLogoutPressed(false);
+                        setLogoutPressed(false)
                       }}
                       onPointerOut={() => {
-                        setLogoutPressed(false);
+                        setLogoutPressed(false)
                       }}
-                      className={`${
-                        logoutPressed
-                          ? "thick_purple_btn_pressed"
-                          : "thick_purple_btn"
-                      } footer_container_logout_dashboard`}
+                      className={`${logoutPressed ? 'thick_purple_btn_pressed' : 'thick_purple_btn'} footer_container_logout_dashboard`}
                       onKeyDown={exitApplication}
                       onClick={setLogoutPopup}
-                      type="button"
-                      style={logoutPopupStatus ? { pointerEvents: "none" } : {}}
+                      type='button'
+                      style={logoutPopupStatus ? { pointerEvents: 'none' } : {}}
                     >
                       {UiLables.LABELS.LOG_OUT}
                     </button>
                     <button
                       onPointerDown={() => {
-                        setExitToDesktopPressed(true);
+                        setExitToDesktopPressed(true)
                       }}
                       onPointerUp={() => {
-                        setExitToDesktopPressed(false);
+                        setExitToDesktopPressed(false)
                       }}
                       onPointerOut={() => {
-                        setExitToDesktopPressed(false);
+                        setExitToDesktopPressed(false)
                       }}
                       className={`${
-                        exitToDesktopPressed
-                          ? "thick_purple_btn_pressed"
-                          : "thick_purple_btn"
+                        exitToDesktopPressed ? 'thick_purple_btn_pressed' : 'thick_purple_btn'
                       } footer_container_exit_to_desktop_dashboard`}
                       onKeyDown={exitApplication}
                       onClick={setExitPopup}
-                      type="button"
-                      style={exitPopupStatus ? { pointerEvents: "none" } : {}}
+                      type='button'
+                      style={exitPopupStatus ? { pointerEvents: 'none' } : {}}
                     >
                       {UiLables.LABELS.EXIT_TO_DESKTOP}
                     </button>
@@ -255,36 +243,26 @@ const Footer: React.FC<IProps> = ({
           <></>
         )}
       </div>
-      <div className="footer_container_line1">
+      <div className='footer_container_line1'>
         {/* TO DO: client name should retrive from DB */}
         &copy; {new Date().getFullYear()}
         {` ${productDetails.copyright}`} {UiLables.LABELS.ALL_RIGHTS_RESERVED}
       </div>
-      <div className="footer_container_line2">
-        <span className="footer_container_line2_version">
-          {/* {UiLables.LABELS.VERSION} {applicationVersion} */}
-        </span>
+      <div className='footer_container_line2'>
+        <span className='footer_container_line2_version'>{/* {UiLables.LABELS.VERSION} {applicationVersion} */}</span>
         <span>
           {RoutePaths.EULA !== location.pathname &&
           RoutePaths.PRIVACY_POLICY !== location.pathname &&
           RoutePaths.GENERAL_MESSAGE !== location.pathname &&
           RoutePaths.DYNAMIC_LOADER !== location.pathname ? (
             <span>
-              {" "}
-              |{" "}
-              <Link
-                className="footer_container_line2_links"
-                to="/login/privacy-policy"
-                state={{ from: location.pathname }}
-              >
+              {' '}
+              |{' '}
+              <Link className='footer_container_line2_links' to='/login/privacy-policy' state={{ from: location.pathname }}>
                 {UiLables.LABELS.PRIVACY_POLICY}
-              </Link>{" "}
-              |{" "}
-              <Link
-                className="footer_container_line2_links"
-                to="/login/eula"
-                state={{ from: location.pathname }}
-              >
+              </Link>{' '}
+              |{' '}
+              <Link className='footer_container_line2_links' to='/login/eula' state={{ from: location.pathname }}>
                 {UiLables.LABELS.EULA}
               </Link>
             </span>
@@ -294,7 +272,7 @@ const Footer: React.FC<IProps> = ({
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
