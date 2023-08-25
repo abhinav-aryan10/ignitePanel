@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from 'axios';
+import axios from 'axios'
 // import exploreWPSUsefulData1 from '../services/';
-import { BaseUrl, serveFromMockoon, baseURL, version } from './BaseUrl';
+import { baseURL, version } from './BaseUrl'
 // import { version as applicationVersion } from '../../../release/app/package.json';
 
 // const Baseurl = 'http:/localhost:3000/' ;
 
-const etag = localStorage.getItem('Etag');
+// const etag = localStorage.getItem('Etag');
 
-const options = {
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-};
+// const options = {
+//   headers: {
+//     'Content-Type': 'application/json',
+//     Accept: 'application/json',
+//   },
+// };
 
-let option: any;
+let option: any
 
 export default function getExploreWpsDetails() {
   // if (serveFromMockoon) {
@@ -33,13 +33,12 @@ export default function getExploreWpsDetails() {
       'Access-Control-Allow-Headers': '*',
       'security-code': 'hatch_development',
       // 'app-version': applicationVersion,
-      'product-short-name': 'IGT',
+      'product-short-name': 'IGT'
       // 'If-None-Match': `${etag}`,
-    },
-  };
-  return axios
-    .get(`${baseURL}/${version}/explorewps`, option)
-    // .then((res) => exploreWPSUsefulData1(res.data));
+    }
+  }
+  return axios.get(`${baseURL}/${version}/explorewps`, option)
+  // .then((res) => exploreWPSUsefulData1(res.data));
 
   // return res = await axios.get(`${baseURL}/${version}/explorewps`, option);
   // // if (res.status === 200) {
