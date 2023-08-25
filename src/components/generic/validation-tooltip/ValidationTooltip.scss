@@ -1,0 +1,68 @@
+@import 'renderer/styles/Constants.style.scss';
+
+.error_message_popup_container {
+  position: relative;
+  .error_message_popup_box {
+    width: 222px;
+    height: 73px;
+    background-color: $error-msg-popup-bg;
+    font-family: $font-family;
+    color: $color-white;
+    font-weight: $font-weight-bolder;
+    font-size: $font-size-error-popup;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    line-height: 1.2;
+    .error_message_popup_box_link {
+      text-decoration: underline;
+      cursor: pointer;
+      border: none;
+      background-color: $error-msg-popup-bg;
+      color: $color-white;
+      font-family: $font-family;
+      font-weight: $font-weight-bolder;
+      font-size: $font-size-error-popup;
+    }
+  }
+  .error_message_popup_box::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: -44%;
+    margin-left: -3px;
+    border-width: 51px;
+    border-top: 11px;
+    border-bottom: 11px;
+    border-style: solid;
+    border-color: transparent $error-msg-popup-bg transparent transparent;
+  }
+}
+
+@media only screen and (max-width: 1666px) {
+  .error_message_popup_container {
+    .error_message_popup_box {
+      width: 174px;
+      height: 56px;
+      font-weight: $font-weight-bolder;
+      font-size: 9pt;
+      padding: 5px;
+      line-height: 1.2;
+      .error_message_popup_box_link {
+        font-size: 9pt;
+      }
+    }
+    .error_message_popup_box::after {
+      content: '';
+      position: absolute;
+      top: 21px;
+      left: -45%;
+      margin-left: -3px;
+      border-width: 42px;
+      border-top: 7px;
+      border-bottom: 7px;
+      border-style: solid;
+      border-color: transparent $error-msg-popup-bg transparent transparent;
+    }
+  }
+}

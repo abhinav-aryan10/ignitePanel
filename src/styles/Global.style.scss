@@ -1,0 +1,110 @@
+/**
+  common class styles which can be used across whole application
+*/
+
+// btn -> button
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.thick_purple_btn,
+.thick_purple_btn_pressed {
+  font-family: $font-family;
+  border: 3px solid $color-white;
+  color: $color-white;
+  background-color: $btn-bg-purple;
+  cursor: pointer;
+  border-radius: 24px;
+  box-shadow: rgb(0 0 0 / 50%) 3px 4.5px 3px;
+}
+
+.thick_purple_btn_pressed {
+  background-color: $btn-bg-purple-pressed;
+  box-shadow: 0;
+}
+
+.light_blue_btn,
+.light_blue_btn_pressed {
+  font-family: $font-family;
+  color: $color-white;
+  background-color: $popup-btn-bg;
+  border: 3px solid $color-white;
+  border-radius: 32px;
+  box-shadow: rgb(0 0 0 / 50%) 3px 4px 3.2px;
+  cursor: pointer;
+}
+
+.light_blue_btn_pressed {
+  background-color: $popup-btn-bg-pressed;
+}
+
+.btn_disabled {
+  opacity: 25%;
+  pointer-events: none;
+}
+
+.btn_deactivated {
+  pointer-events: none;
+}
+
+.fade_in_animation_for_container {
+  animation: fadeInAnimation ease 0.6s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.bottom_to_top_animation_for_accesspanel {
+  animation: bottomToTopAnimationAccessPanel ease 0.6s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.top_to_bottom_animation_for_accesspanel {
+  animation: topToBottomAnimationAccessPanel ease 0.6s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+iframe {
+  border: none;
+}
+
+@keyframes bottomToTopAnimationAccessPanel {
+  0% {
+    bottom: -80px;
+  }
+  100% {
+    bottom: 6px;
+  }
+}
+
+@keyframes topToBottomAnimationAccessPanel {
+  0% {
+    bottom: 6px;
+  }
+  100% {
+    bottom: -80px;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInCloudMainSection {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

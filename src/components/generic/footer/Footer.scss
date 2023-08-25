@@ -1,0 +1,160 @@
+@import 'renderer/styles/Constants.style.scss';
+
+.footer_container {
+  position: fixed;
+  left: 30px;
+  bottom: 10px;
+  color: $color-white;
+  font-weight: $font-weight;
+  font-size: $font-size-footer;
+  font-style: normal;
+  .footer_container_exit_to_desktop_dashboard_after {
+    bottom: 8px;
+    left: 245px;
+    position: fixed;
+    .exit_popup_container::after {
+      content: "";
+      position: absolute;
+      top: 50px;
+      left: -3%;
+      margin-left: -3px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: transparent $color-white transparent transparent;
+    }
+    .exit_popup_container .exit_popup_container_buttons {
+      margin-left: 50px !important;
+    }
+  }
+  .footer_container_exit_to_desktop_login_after {
+    .exit_popup_container::after {
+      content: '';
+      position: absolute;
+      top: 116px;
+      left: 21%;
+      margin-left: -5px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: $color-white transparent transparent transparent;
+    }
+  }
+  .footer_container_logout_dashboard_after {
+    bottom: 8px;
+    left: 115px;
+    position: fixed;
+    .exit_popup_container .exit_popup_container_buttons {
+      text-align: center;
+      margin-left: 44px !important;
+      padding-right: 60px !important;
+    }
+    .exit_popup_container::after {
+      content: "";
+      position: absolute;
+      top: 50px;
+      left: -3%;
+      margin-left: -3px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: transparent $color-white transparent transparent;
+    }
+  }
+  .footer_container_user_name {
+    font-size: 16pt;
+    color: $color-yellow;
+    font-weight: $font-weight-bolder;
+    margin-bottom: 2px;
+  }
+  .footer_container_logout_dashboard {
+    width: 78px;
+    height: 33px;
+    font-size: 15px;
+    font-weight: $font-weight-bolder;
+    margin-bottom: 8px;
+    margin-right: 5px;
+  }
+  .footer_container_exit_to_desktop_dashboard {
+    width: 120px;
+    height: 33px;
+    font-size: 14px;
+    font-weight: $font-weight-bolder;
+    margin-bottom: 8px;
+  }
+  .footer_container_exit_to_desktop {
+    width: 178px;
+    height: 45px;
+    font-size: $font-size-footer-btn;
+    font-weight: $font-weight-extrabold;
+    margin-bottom: 8px;
+  }
+  .footer_container_line2 {
+    .footer_container_line2_version {
+      font-weight: $font-weight-bold;
+    }
+    .footer_container_line2_links {
+      color: $color-white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 1666px) {
+  .footer_container {
+    position: fixed;
+    left: 18px;
+    bottom: 6px;
+    font-size: 9pt;
+    .footer_container_exit_to_desktop_dashboard_after {
+      margin-top: -58px;
+      position: fixed;
+      margin-left: 84px;
+      .exit_popup_container::after {
+        content: '';
+        position: absolute;
+        top: 82px;
+        left: 13%;
+        margin-left: -5px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: $color-white transparent transparent transparent;
+      }
+    }
+    .footer_container_exit_to_desktop_login_after {
+      .exit_popup_container::after {
+        content: '';
+        position: absolute;
+        top: 82px;
+        left: 21%;
+        margin-left: -5px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: $color-white transparent transparent transparent;
+      }
+    }
+    .footer_container_logout_dashboard_after {
+      margin-top: -58px;
+      position: fixed;
+      .exit_popup_container .exit_popup_container_buttons {
+        text-align: center;
+        margin-left: 44px !important;
+        padding-right: 50px !important;
+      }
+      .exit_popup_container::after {
+        content: '';
+        position: absolute;
+        top: 82px;
+        left: 9%;
+        margin-left: -5px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: $color-white transparent transparent transparent;
+      }
+    }
+    .footer_container_exit_to_desktop {
+      width: 136px;
+      height: 32px;
+      font-size: 12pt;
+      margin-bottom: 5px;
+    }
+  }
+}
