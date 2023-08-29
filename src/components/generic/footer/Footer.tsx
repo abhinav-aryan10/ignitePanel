@@ -278,5 +278,9 @@
 //     </div>
 //   )
 // }
-
-// export default Footer
+const Footer = ()=> {
+  return(
+    <>Footer</>
+  )
+}
+export default Footer

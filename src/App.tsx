@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 // import { useState } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
