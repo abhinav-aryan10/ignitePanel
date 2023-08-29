@@ -30,6 +30,9 @@
   ],
   "exclude": [
     "node_modules",
-    "build"
+    "build",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+
   ] // *** The files to not type check ***
 }

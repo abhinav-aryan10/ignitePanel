@@ -418,7 +418,7 @@
 
 // export default ChangePassword;
 
-import React from "react";
+// import React from "react";
 const ChangePassword = () => {
   return <div> Change password </div>;
 };

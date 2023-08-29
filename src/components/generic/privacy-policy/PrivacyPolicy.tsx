@@ -118,7 +118,7 @@
 
 // export default PrivacyPolicy;
 
-import React from "react";
+// import React from "react";
 
 const PrivacyPolicy = () => {
   return <div>This is Privacy Policy </div>;

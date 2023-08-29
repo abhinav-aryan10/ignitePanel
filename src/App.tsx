@@ -1,8 +1,9 @@
-import React from "react";
+
 import "./App.css";
 // import { useState } from "react";
 
-import { MemoryRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { MemoryRouter as  Routes, Route, BrowserRouter } from "react-router-dom";
 import NavigateToRespectivePath from "./components/NavigateToRespectivePath";
 import { RoutePaths } from "./constants/Routepaths.constants";
 import LoginContainer from "./pages/login-container/LoginContainer";

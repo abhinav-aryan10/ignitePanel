@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-named-as-default */
-import React from 'react';
+// import React from 'react';
 import './CircularLoader.scss';
 
 interface IProps {

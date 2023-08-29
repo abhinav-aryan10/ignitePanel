@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import log from "loglevel";
 import { RoutePaths } from "../constants/Routepaths.constants";
-import React from "react";
+// import React from "react";
 
 const NavigateToRespectivePath: React.FC = ({}) => {
 

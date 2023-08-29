@@ -11,7 +11,7 @@ import UiLables from "../../../constants/UiLables.constants";
 // import Popover from '../../generic/';
 import OutsideAlerter from "../outside-alerter/OutsideAlerter";
 // import { version as applicationVersion } from '../../../../../release/app/package.json';
-import React from "react";
+// import React from "react";
 
 interface IProps {
   productDetails: any;

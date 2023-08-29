@@ -100,7 +100,7 @@
 
 // export default ChangePasswordConfirmation;
 
-import React from "react";
+// import React from "react";
 
 const ChangePasswordConfirmation = () => {
   return <div>This is Change Password Confirmation</div>;

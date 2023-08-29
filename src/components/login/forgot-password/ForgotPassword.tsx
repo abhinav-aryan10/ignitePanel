@@ -188,7 +188,7 @@
 // }
 
 // export default ForgetPassword;
-import React from "react";
+// import React from "react";
 
 const ForgotPassword = () => {
   return <div>This is Privacy Policy </div>;
