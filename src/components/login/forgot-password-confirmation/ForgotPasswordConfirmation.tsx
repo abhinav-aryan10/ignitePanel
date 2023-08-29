@@ -72,7 +72,7 @@
 // };
 
 // export default ForgetPasswordConfirmation;
-import React from "react";
+// import React from "react";
 const ForgetPasswordConfirmation = () => {
   return <div>This is Forgot password confirmation screen</div>;
 };

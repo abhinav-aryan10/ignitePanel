@@ -1,15 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable jsx-a11y/no-autofocus */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
 import './App.scss';
-// import { useState } from "react";
+// import { useState } from 'react';
 
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { MemoryRouter as Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavigateToRespectivePath from './components/NavigateToRespectivePath';
 import { RoutePaths } from './constants/Routepaths.constants';
 import LoginContainer from './pages/login-container/LoginContainer';
@@ -22,19 +15,19 @@ import ChangePassword from './components/login/change-password/ChangePassword';
 import ChangePasswordConfirmation from './components/login/change-password-confirmation/ChangePasswordConfirmation';
 
 function App() {
-  const [productDetails, setProductDetails] = useState({});
-  const [loginDetails, setLoginDetails] = useState({});
-  const [eulaDetails, setEulaDetails] = useState({});
-  const [generalMessage, setGeneralMessage] = useState({});
-  const [isLogoutOnAccessPanel, setIsLogoutOnAccessPanel] = useState(true);
-  const [displayGearBox, setDisplayGearBox] = useState(false);
-  const setLoginDetailsRef = (loginData: any) => {
-    setLoginDetails(loginData);
-  };
+  // const [productDetails, setProductDetails] = useState({});
+  // const [loginDetails, setLoginDetails] = useState({});
+  // const [eulaDetails, setEulaDetails] = useState({});
+  // const [generalMessage, setGeneralMessage] = useState({});
+  // const [isLogoutOnAccessPanel, setIsLogoutOnAccessPanel] = useState(true);
+  // const [displayGearBox, setDisplayGearBox] = useState(false);
+  // const setLoginDetailsRef = (loginData: any) => {
+  //   setLoginDetails(loginData);
+  // };
 
-  const setEulaDetailsRef = (eulaData: any) => {
-    setEulaDetails(eulaData);
-  };
+  // const setEulaDetailsRef = (eulaData: any) => {
+  //   setEulaDetails(eulaData);
+  // };
   return (
     <BrowserRouter>
       <Routes>
@@ -44,12 +37,12 @@ function App() {
             path={RoutePaths.LOGIN_CARD}
             element={
               <LoginCard
-                setLoginDetails={setLoginDetailsRef}
-                setEulaDetails={setEulaDetailsRef}
-                productDetails={productDetails}
-                setGeneralMessage={setGeneralMessage}
-                setIsLogoutOnAccessPanel={setIsLogoutOnAccessPanel}
-                setDisplayGearBox={setDisplayGearBox}
+              // setLoginDetails={setLoginDetailsRef}
+              // setEulaDetails={setEulaDetailsRef}
+              // productDetails={productDetails}
+              // setGeneralMessage={setGeneralMessage}
+              // setIsLogoutOnAccessPanel={setIsLogoutOnAccessPanel}
+              // setDisplayGearBox={setDisplayGearBox}
               />
             }
           />

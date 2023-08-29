@@ -440,7 +440,7 @@
 
 // export default Eula;
 
-import React from "react";
+// import React from "react";
 
 const Eula = () => {
   return <div>This is Eula Page</div>;
