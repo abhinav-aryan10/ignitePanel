@@ -9,7 +9,7 @@ const options = {
     Accept: 'application/json',
   },
 };
-const userIdToken = localStorage.getItem('userIdToken');
+// const userIdToken = localStorage.getItem('userIdToken');
 let option: any;
 
 export default function getClassList() {

@@ -1,40 +1,32 @@
 // /* eslint-disable jsx-a11y/no-autofocus */
-// /* eslint-disable promise/always-return */
 // /* eslint-disable import/no-named-as-default */
 // /* eslint-disable jsx-a11y/label-has-associated-control */
 // import log from 'loglevel';
 // import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import ErrorMessagePopup from 'renderer/components/generic/validation-tooltip/ValidationTooltip';
-// import {
-//   passwordMaxLength,
-//   passwordMinLength,
-// } from 'renderer/configs/Login.config';
-// import RoutePaths from 'renderer/constants/RoutePaths.constants';
-// import { UiLables } from 'renderer/constants/UiLables.constants';
-// import {
-//   changePassword,
-//   loginUser,
-//   resetPassword,
-//   updateUserDetails,
-// } from 'renderer/services/Auth.service';
-// import { defaultTemporaryPassword } from 'renderer/services/BaseUrl';
-// import { logoutUser } from 'renderer/utils/AwsCognito.util';
-// import buttonClickSound from 'renderer/utils/ButtonClick.util';
+// import ErrorMessagePopup from '../../generic/validation-tooltip/ValidationTooltip';
+// import { passwordMaxLength, passwordMinLength } from '../../../configs/Login.config';
+// import { RoutePaths } from '../../../constants/Routepaths.constants';
+// import { UiLables } from '../../../constants/UiLables.constants';
+// import { changePassword, loginUser, resetPassword, updateUserDetails } from '../../../services/Auth.service';
+// import { defaultTemporaryPassword } from '../../../services/BaseUrl';
+// import { logoutUser } from '../../../utils/AwsCognito.util';
+// import buttonClickSound from '../../../utils/ButtonClick.util';
 // import './ChangePassword.scss';
+// import React from 'react';
 
-// const showPasswordIcon = require('renderer/assets/icons/show_password.png');
-// const dontShowPasswordIcon = require('renderer/assets/icons/dont_show_password.png');
+// const showPasswordIcon = require('../../../assets/icons/show_password.png');
+// const dontShowPasswordIcon = require('../../../assets/icons/dont_show_password.png');
 
 // const validateInputsObject = {
 //   passwordNew: {
 //     display: false,
-//     message: '',
+//     message: ''
 //   },
 //   passwordConfirm: {
 //     display: false,
-//     message: '',
-//   },
+//     message: ''
+//   }
 // };
 
 // const ChangePassword: React.FC = () => {
@@ -43,57 +35,43 @@
 //   const [validateInputs, setValidateInputs] = useState(validateInputsObject);
 //   const [passwordNew, setPasswordNew] = useState('');
 //   const [passwordConfirm, setPasswordConfirm] = useState('');
-//   const [isChangePasswordInprogress, setIsChangePasswordInprogress] =
-//     useState(false);
+//   const [isChangePasswordInprogress, setIsChangePasswordInprogress] = useState(false);
 //   const [changePasswordPressed, setChangePasswordPressed] = useState(false);
-//   const [isShowPasswordNewEnabled, setIsShowPasswordNewEnabled] =
-//     useState(true);
-//   const [isShowPasswordConfirmEnabled, setIsShowPasswordConfirmEnabled] =
-//     useState(true);
+//   const [isShowPasswordNewEnabled, setIsShowPasswordNewEnabled] = useState(true);
+//   const [isShowPasswordConfirmEnabled, setIsShowPasswordConfirmEnabled] = useState(true);
 
 //   const checkValidations = () => {
-//     // eslint-disable-next-line promise/catch-or-return
 //     logoutUser();
 
-//     if (
-//       passwordNew !== '' &&
-//       passwordConfirm !== '' &&
-//       !isChangePasswordInprogress
-//     ) {
+//     if (passwordNew !== '' && passwordConfirm !== '' && !isChangePasswordInprogress) {
 //       buttonClickSound();
 //       setIsChangePasswordInprogress(true);
 //       const trimmedPasswordNew = passwordNew.trim();
 //       const trimmedPasswordConfirm = passwordConfirm.trim();
-//       const isPasswordConfirmAtleatMin =
-//         trimmedPasswordConfirm.length >= passwordMinLength;
-//       const isPasswordNewAtleatMin =
-//         trimmedPasswordNew.length >= passwordMinLength;
+//       const isPasswordConfirmAtleatMin = trimmedPasswordConfirm.length >= passwordMinLength;
+//       const isPasswordNewAtleatMin = trimmedPasswordNew.length >= passwordMinLength;
 //       if (!(isPasswordConfirmAtleatMin && isPasswordNewAtleatMin)) {
 //         if (!isPasswordConfirmAtleatMin && !isPasswordNewAtleatMin) {
 //           setValidateInputs({
 //             passwordNew: {
 //               display: true,
-//               message: UiLables.VALIDATIONS.MIN_PASSWORD_ERROR,
+//               message: UiLables.VALIDATIONS.MIN_PASSWORD_ERROR
 //             },
 //             passwordConfirm: {
 //               display: true,
-//               message: '',
-//             },
+//               message: ''
+//             }
 //           });
 //         } else {
 //           setValidateInputs({
 //             passwordNew: {
 //               display: true,
-//               message: !isPasswordNewAtleatMin
-//                 ? UiLables.VALIDATIONS.MIN_PASSWORD_ERROR
-//                 : '',
+//               message: !isPasswordNewAtleatMin ? UiLables.VALIDATIONS.MIN_PASSWORD_ERROR : ''
 //             },
 //             passwordConfirm: {
 //               display: true,
-//               message: !isPasswordConfirmAtleatMin
-//                 ? UiLables.VALIDATIONS.MIN_PASSWORD_ERROR
-//                 : '',
-//             },
+//               message: !isPasswordConfirmAtleatMin ? UiLables.VALIDATIONS.MIN_PASSWORD_ERROR : ''
+//             }
 //           });
 //         }
 //         setIsChangePasswordInprogress(false);
@@ -102,29 +80,26 @@
 //         setValidateInputs({
 //           passwordNew: {
 //             display: true,
-//             message: '',
+//             message: ''
 //           },
 //           passwordConfirm: {
 //             display: true,
-//             message: UiLables.VALIDATIONS.PASSWORD_MATCH_ERROR,
-//           },
+//             message: UiLables.VALIDATIONS.PASSWORD_MATCH_ERROR
+//           }
 //         });
 //         setIsChangePasswordInprogress(false);
 //         document.getElementById('passwordNewInput')?.focus();
 //       } else {
-//         // eslint-disable-next-line promise/catch-or-return
 //         loginUser({
 //           email: localStorage.getItem('email'),
-//           password:
-//             sessionStorage.getItem('temporaryPassword') ||
-//             defaultTemporaryPassword,
+//           password: sessionStorage.getItem('temporaryPassword') || defaultTemporaryPassword
 //         }).then(() => {
 //           // TO DO: Change password API call will happen here
 //           changePassword({
 //             passwordNew: trimmedPasswordNew,
-//             passwordConfirm: trimmedPasswordConfirm,
+//             passwordConfirm: trimmedPasswordConfirm
 //           })
-//             .then((res) => {
+//             .then((res: any) => {
 //               if (res && res.status === 'SUCCESS') {
 //                 updateUserDetails({ reset_required: 0, password: passwordNew })
 //                   .then(() => {
@@ -132,12 +107,12 @@
 //                     setValidateInputs({
 //                       passwordNew: {
 //                         display: false,
-//                         message: '',
+//                         message: ''
 //                       },
 //                       passwordConfirm: {
 //                         display: false,
-//                         message: '',
-//                       },
+//                         message: ''
+//                       }
 //                     });
 //                     navigate(RoutePaths.CHANGE_PASSWORD_CONFIRM);
 //                     setIsChangePasswordInprogress(false);
@@ -146,15 +121,10 @@
 //                     log.error(error);
 //                     resetPassword({
 //                       passwordConfirm: trimmedPasswordConfirm,
-//                       passwordToReset: String(
-//                         sessionStorage.getItem('temporaryPassword')
-//                       ),
+//                       passwordToReset: String(sessionStorage.getItem('temporaryPassword'))
 //                     })
 //                       .then(() => {
-//                         if (
-//                           sessionStorage.getItem('temporaryPassword') !==
-//                           'hatch123'
-//                         ) {
+//                         if (sessionStorage.getItem('temporaryPassword') !== 'hatch123') {
 //                           logoutUser();
 //                           localStorage.removeItem('userIdToken');
 //                           localStorage.removeItem('refreshToken');
@@ -165,67 +135,60 @@
 //                           localStorage.removeItem('sub');
 //                           sessionStorage.removeItem('temporaryPassword');
 //                           sessionStorage.removeItem('upgradePopupDisplayed');
-//                           window.electron.ipcRenderer.sendMessage(
-//                             'remove_classlink_clever_cookies',
-//                             []
-//                           );
 //                         } else {
-//                           sessionStorage.removeItem('temporaryPassword');
-//                         }
-//                         return 1;
-//                       })
-//                       .catch((resetError) => {
-//                         log.error(resetError);
-//                         sessionStorage.removeItem('temporaryPassword');
-//                         return 0;
-//                       });
-//                     navigate(RoutePaths.GENERAL_MESSAGE, {
-//                       state: {
-//                         errorCode: 'API-1001',
-//                         P2: error.response.status,
-//                         P3: error.message,
-//                       },
-//                     });
-//                   });
-//               }
-//             })
-//             .catch((error) => {
-//               log.error(error);
-//               setValidateInputs({
-//                 passwordNew: {
-//                   display: true,
-//                   message: '',
-//                 },
-//                 passwordConfirm: {
-//                   display: true,
-//                   message: UiLables.VALIDATIONS.API_ERROR,
-//                 },
-//               });
-//               document.getElementById('passwordNewInput')?.focus();
-//               setIsChangePasswordInprogress(false);
-//               sessionStorage.removeItem('temporaryPassword');
-//             });
-//         });
-//       }
-//     }
-//   };
+  //                         sessionStorage.removeItem('temporaryPassword');
+  //                       }
+  //                       return 1;
+  //                     })
+  //                     .catch((resetError) => {
+  //                       log.error(resetError);
+  //                       sessionStorage.removeItem('temporaryPassword');
+  //                       return 0;
+  //                     });
+  //                   navigate(RoutePaths.GENERAL_MESSAGE, {
+  //                     state: {
+  //                       errorCode: 'API-1001',
+  //                       P2: error.response.status,
+  //                       P3: error.message
+  //                     }
+  //                   });
+  //                 });
+  //             }
+  //           })
+  //           .catch((error) => {
+  //             log.error(error);
+  //             setValidateInputs({
+  //               passwordNew: {
+  //                 display: true,
+  //                 message: ''
+  //               },
+  //               passwordConfirm: {
+  //                 display: true,
+  //                 message: UiLables.VALIDATIONS.API_ERROR
+  //               }
+  //             });
+  //             document.getElementById('passwordNewInput')?.focus();
+  //             setIsChangePasswordInprogress(false);
+  //             sessionStorage.removeItem('temporaryPassword');
+  //           });
+  //       });
+  //     }
+  //   }
+  // };
 
-//   const focusPasswordConfirmInput = (keyEvent: { key: string }) => {
-//     if (keyEvent.key === 'Enter') {
-//       document.getElementById('passwordConfirmInput')?.focus();
-//     }
-//   };
+  // const focusPasswordConfirmInput = (keyEvent: { key: string }) => {
+  //   if (keyEvent.key === 'Enter') {
+  //     document.getElementById('passwordConfirmInput')?.focus();
+  //   }
+  // };
 
-//   const focusChangePasswordButton = (keyEvent: {
-//     key: string;
-//     preventDefault: () => void;
-//   }) => {
-//     if (keyEvent.key === 'Enter') {
-//       document.getElementById('changePasswordButton')?.focus();
-//       checkValidations();
-//       keyEvent.preventDefault();
-//     }
-//   };
+  // const focusChangePasswordButton = (keyEvent: { key: string; preventDefault: () => void }) => {
+  //   if (keyEvent.key === 'Enter') {
+  //     document.getElementById('changePasswordButton')?.focus();
+  //     checkValidations();
+  //     keyEvent.preventDefault();
+  //   }
+  // };
 
 //   return (
 //     <div className="change_password_container">

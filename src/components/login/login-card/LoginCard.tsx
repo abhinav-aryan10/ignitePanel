@@ -1,36 +1,32 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 // /* eslint-disable jsx-a11y/no-autofocus */
-// /* eslint-disable promise/always-return */
 // /* eslint-disable import/no-unresolved */
 // /* eslint-disable import/no-named-as-default */
 // /* eslint-disable jsx-a11y/label-has-associated-control */
 // /* eslint-disable jsx-a11y/no-static-element-interactions */
 // /* eslint-disable jsx-a11y/click-events-have-key-events */
-// import { useEffect, useState } from 'react';
+// import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import { emailMaxLength } from 'renderer/configs/Login.config';
-// import UiLables from 'renderer/constants/UiLables.constants';
-// import { ILoginValidations } from 'renderer/interfaces/Login.interface';
-// import Regex from 'renderer/utils/Regex.util';
+// import { emailMaxLength } from '../../../configs/Login.config';
+// import UiLables from '../../../constants/UiLables.constants';
+// import { ILoginValidations } from '../../../interfaces/Login.interface';
+// import Regex from '../../../utils/Regex.util';
 // import './LoginCard.scss';
-// import buttonClickSound from 'renderer/utils/ButtonClick.util';
-// import {
-//   classLinkDetails,
-//   getUserDetails,
-//   loginUser,
-// } from 'renderer/services/Auth.service';
-// import RoutePaths from 'renderer/constants/RoutePaths.constants';
-// import CircularLoader from 'renderer/components/generic/circular-loader/CircularLoader';
-// import exitToDesktopUtil from 'renderer/utils/ExitToDesktop.util';
+// import buttonClickSound from '../../../utils/ButtonClick.util';
+// import { getUserDetails, loginUser } from '../../../services/Auth.service';
+// import { RoutePaths } from '../../../constants/Routepaths.constants';
+// import CircularLoader from '../../generic/circular-loader/CircularLoader';
+// import exitToDesktopUtil from '../../../utils/ExitToDesktop.util';
 // import log from 'loglevel';
 // import ErrorMessagePopup from '../../generic/validation-tooltip/ValidationTooltip';
-// import Errors from '../../../constants/Errors.constants';
+// import Errors from '../../../constants/Error.constants';
 // import Global from '../../../constants/Global.constants';
-// import getExploreWpsDetails from 'renderer/services/exploreWps.service';
-// import { logoutUser } from 'renderer/utils/AwsCognito.util';
+// import getExploreWpsDetails from '../../../services/exploreWps.service';
+// import { logoutUser } from '../../../utils/AwsCognito.util';
+// import React from 'react';
 
-// const showPasswordIcon = require('renderer/assets/icons/show_password.png');
-// const dontShowPasswordIcon = require('renderer/assets/icons/dont_show_password.png');
+// const showPasswordIcon = require('../../../assets/icons/show_password.png');
+// const dontShowPasswordIcon = require('../../../assets/icons/dont_show_password.png');
 
 // interface IProps {
 //   setLoginDetails: (data: any) => void;
@@ -44,21 +40,21 @@
 // const validateInputsObject: ILoginValidations = {
 //   email: {
 //     display: false,
-//     message: '',
+//     message: ''
 //   },
 //   password: {
 //     display: false,
-//     message: '',
-//   },
+//     message: ''
+//   }
 // };
 
 // const LoginCard: React.FC<IProps> = ({
 //   setLoginDetails,
-//   setEulaDetails,
-//   productDetails,
+//   // setEulaDetails,
+//   // productDetails,
 //   setGeneralMessage,
 //   setIsLogoutOnAccessPanel,
-//   setDisplayGearBox,
+//   setDisplayGearBox
 // }: IProps) => {
 //   const navigate = useNavigate();
 //   const setPath = (navigatePath: string) => {
@@ -75,17 +71,26 @@
 //   const [isLoginInprogress, setIsLoginInprogress] = useState(false);
 //   const [showCircularLoader, setShowCircularLoader] = useState(false);
 //   const [disableInputs, setDisableInputs] = useState(false);
-//   const [classlinkBtnPressed, setClasslinkBtnPressed] = useState(false);
 
 //   // const eulaAcceptedVersion = localStorage.getItem('acceptedEulaVersion');
-//   let acceptedEulaUserDetails: any = localStorage.getItem(
-//     'acceptedEulaUserDetails'
-//   );
+//   let acceptedEulaUserDetails: any = localStorage.getItem('acceptedEulaUserDetails');
+//   // let loggedInUserDetails: {
+//   //   status: string;
+//   //   data: {
+//   //     token: '';
+//   //     idToken: '';
+//   //     email: '';
+//   //     exp: '';
+//   //     refreshToken: '';
+//   //     sub: '';
+//   //   };
+//   // };
+
+//   let loggedInUserDetails: any;
 
 //   let userId: any;
-//   const eulaLatestVersion = productDetails.eula.version;
+//   const eulaLatestVersion = 1.0;
 //   let userIndex: any;
-//   let storeUserDetailInfoInLocalStorage: any;
 //   if (acceptedEulaUserDetails) {
 //     acceptedEulaUserDetails = JSON.parse(acceptedEulaUserDetails);
 //   } else {
@@ -94,18 +99,14 @@
 
 //   const checkIfLatestEulaAccepted = () => {
 //     userId = localStorage.getItem('userId');
-//     userIndex = acceptedEulaUserDetails.findIndex(
-//       (element: any) => element.userId === userId
-//     );
+//     userIndex = acceptedEulaUserDetails.findIndex((element: any) => element.userId === userId);
 //     if (userIndex !== -1) {
-//       if (
-//         acceptedEulaUserDetails[userIndex].eulaVersion === eulaLatestVersion
-//       ) {
+//       if (acceptedEulaUserDetails[userIndex].eulaVersion === eulaLatestVersion) {
 //         getExploreWpsDetails()
-//           .then((res) => {
+//           .then((res: any) => {
 //             localStorage.setItem('gameDetails', JSON.stringify(res));
 //           })
-//           .catch((error) => {
+//           .catch((error: any) => {
 //             log.error(error);
 //             if (error.response.status === 422) {
 //               logoutUser();
@@ -117,14 +118,10 @@
 //               localStorage.removeItem('userId');
 //               localStorage.removeItem('sub');
 //               sessionStorage.removeItem('upgradePopupDisplayed');
-//               window.electron.ipcRenderer.sendMessage(
-//                 'remove_classlink_clever_cookies',
-//                 []
-//               );
 //               setGeneralMessage({
 //                 errorCode: 'API_EMAIL_UPDATE_1001',
 //                 PrimaryBtnFn: continueToLoginCard,
-//                 SecondaryBtnFn: '',
+//                 SecondaryBtnFn: ''
 //               });
 //               setPath(RoutePaths.GENERAL_MESSAGE);
 //             } else {
@@ -132,8 +129,8 @@
 //                 state: {
 //                   errorCode: 'API-1001',
 //                   P2: error.response.status,
-//                   P3: error.message,
-//                 },
+//                   P3: error.message
+//                 }
 //               });
 //             }
 //           });
@@ -150,14 +147,7 @@
 //   };
 
 //   // TO DO: Login persistent
-//   const setLoginLocalStorage = (
-//     accessToken: string,
-//     idToken: string,
-//     refreshToken: string,
-//     expiry: any,
-//     email: any,
-//     sub: any
-//   ) => {
+//   const setLoginLocalStorage = (accessToken: string, idToken: string, refreshToken: string, expiry: any, email: any, sub: any) => {
 //     localStorage.removeItem('accessToken');
 //     localStorage.setItem('accessToken', accessToken);
 //     localStorage.removeItem('userIdToken');
@@ -176,7 +166,7 @@
 //   const reLoginToCognito = () => {
 //     loginUser({
 //       email: emailAddress.toLowerCase(),
-//       password,
+//       password
 //     });
 //   };
 //   const logout = () => {
@@ -188,10 +178,6 @@
 //     localStorage.removeItem('userId');
 //     localStorage.removeItem('sub');
 //     sessionStorage.removeItem('upgradePopupDisplayed');
-//     window.electron.ipcRenderer.sendMessage(
-//       'remove_classlink_clever_cookies',
-//       []
-//     );
 //     setLoginDetails({});
 //   };
 
@@ -209,12 +195,12 @@
 //         setValidateInputs({
 //           email: {
 //             display: true,
-//             message: UiLables.VALIDATIONS.EMAIL_NOT_VALID,
+//             message: UiLables.VALIDATIONS.EMAIL_NOT_VALID
 //           },
 //           password: {
 //             display: false,
-//             message: '',
-//           },
+//             message: ''
+//           }
 //         });
 //         setIsLoginInprogress(false);
 //         setShowCircularLoader(false);
@@ -223,40 +209,38 @@
 //       } else {
 //         // TO DO: login API call will happen here
 //         // sample loginResponse 0 -> No userInfo, 1 -> Liceince expired, 2 -> Logged in
-//         let loggedInUserDetails = await loginUser({
+//         loggedInUserDetails = await loginUser({
 //           email: emailAddress.toLowerCase(),
-//           password,
-//         }).catch((error) => {
+//           password
+//         }).catch((error: any) => {
 //           console.log(error);
 //           if (
-//             error.rejectErrorCode ===
-//               Global.Constants.incorrectLoginCredentials &&
+//             error.rejectErrorCode === Global.Constants.incorrectLoginCredentials &&
 //             error.rejectError === Global.Constants.expiredUserText
 //           ) {
 //             setValidateInputs({
 //               email: {
 //                 display: true,
-//                 message: '',
+//                 message: ''
 //               },
 //               password: {
 //                 display: true,
-//                 message: UiLables.VALIDATIONS.PASSWORD_LICIENCE_EXPIRED,
-//               },
+//                 message: UiLables.VALIDATIONS.PASSWORD_LICIENCE_EXPIRED
+//               }
 //             });
 //           } else if (
-//             error.rejectErrorCode ===
-//               Global.Constants.incorrectLoginCredentials ||
+//             error.rejectErrorCode === Global.Constants.incorrectLoginCredentials ||
 //             error.rejectErrorCode === Global.Constants.userDoesNotExistText
 //           ) {
 //             setValidateInputs({
 //               email: {
 //                 display: true,
-//                 message: '',
+//                 message: ''
 //               },
 //               password: {
 //                 display: true,
-//                 message: UiLables.VALIDATIONS.PASSWORD_INCORRECT1,
-//               },
+//                 message: UiLables.VALIDATIONS.PASSWORD_INCORRECT1
+//               }
 //             });
 //           }
 //           // if we get any errors from AWS it will navigate to general message
@@ -264,24 +248,15 @@
 //             navigate(RoutePaths.GENERAL_MESSAGE, {
 //               state: {
 //                 errorCode: Errors.AWS_COGNITO_ERROR,
-//                 P2: error.rejectErrorCode,
-//               },
+//                 P2: error.rejectErrorCode
+//               }
 //             });
 //           }
 //           setShowCircularLoader(false);
 //           setDisableInputs(false);
 //         });
 //         try {
-//           if (loggedInUserDetails?.status === 'logged-in') {
-//             // TODO: Example to call IPC mech to insert into table on successful login
-//             // TODO: Need to be removed after actual integration
-
-//             // window.electron.ipcRenderer.sendMessage('insert_table', [
-//             //   'loginCredentials',
-//             //   loggedInUserDetails.email,
-//             //   loggedInUserDetails.userName,
-//             //   loggedInUserDetails.userId
-//             // ]);
+//           if (loggedInUserDetails.status === 'logged-in') {
 //             setLoginDetails(loggedInUserDetails?.data);
 //             setLoginLocalStorage(
 //               loggedInUserDetails?.data.token,
@@ -294,35 +269,25 @@
 //             setValidateInputs({
 //               email: {
 //                 display: false,
-//                 message: '',
+//                 message: ''
 //               },
 //               password: {
 //                 display: false,
-//                 message: '',
-//               },
+//                 message: ''
+//               }
 //             });
 //             getUserDetails()
-//               .then((userRes) => {
-//                 storeUserDetailInfoInLocalStorage = localStorage.setItem(
-//                   'userDetail',
-//                   JSON.stringify(userRes)
-//                 );
-//                 userId = localStorage.setItem(
-//                   'userId',
-//                   userRes.payload.data.user[0].id
-//                 );
+//               .then((userRes: any) => {
+//                 userId = localStorage.setItem('userId', userRes.payload.data.user[0].id);
 //                 const previousLoginTimestamp: any = new Date().getTime();
-//                 localStorage.setItem(
-//                   'previousLoginTimestamp',
-//                   JSON.stringify(previousLoginTimestamp)
-//                 );
+//                 localStorage.setItem('previousLoginTimestamp', JSON.stringify(previousLoginTimestamp));
 //                 localStorage.setItem('loggedInVia', 'cognito');
 //                 if (userRes.payload.data.user[0].role.includes('5')) {
 //                   if (userRes.payload.data.license.success !== true) {
 //                     setGeneralMessage({
 //                       errorCode: 'R-1002',
 //                       PrimaryBtnFn: exitToDesktopUtil,
-//                       SecondaryBtnFn: logout,
+//                       SecondaryBtnFn: logout
 //                     });
 //                     setIsLogoutOnAccessPanel(false);
 //                     setDisplayGearBox(false);
@@ -338,18 +303,18 @@
 //                   setValidateInputs({
 //                     email: {
 //                       display: true,
-//                       message: UiLables.VALIDATIONS.ONLY_TEACHER_CAN_USE_APP,
+//                       message: UiLables.VALIDATIONS.ONLY_TEACHER_CAN_USE_APP
 //                     },
 //                     password: {
 //                       display: true,
-//                       message: '',
-//                     },
+//                       message: ''
+//                     }
 //                   });
 //                   setDisableInputs(false);
 //                   logout();
 //                 }
 //               })
-//               .catch((error) => {
+//               .catch((error: any) => {
 //                 log.error(error);
 //                 if (error.response.status === 422) {
 //                   logoutUser();
@@ -361,14 +326,10 @@
 //                   localStorage.removeItem('userId');
 //                   localStorage.removeItem('sub');
 //                   sessionStorage.removeItem('upgradePopupDisplayed');
-//                   window.electron.ipcRenderer.sendMessage(
-//                     'remove_classlink_clever_cookies',
-//                     []
-//                   );
 //                   setGeneralMessage({
 //                     errorCode: 'API_EMAIL_UPDATE_1001',
 //                     PrimaryBtnFn: continueToLoginCard,
-//                     SecondaryBtnFn: '',
+//                     SecondaryBtnFn: ''
 //                   });
 //                   setPath(RoutePaths.GENERAL_MESSAGE);
 //                 } else {
@@ -376,8 +337,8 @@
 //                     state: {
 //                       errorCode: 'API-1001',
 //                       P2: error.response.status,
-//                       P3: error.message,
-//                     },
+//                       P3: error.message
+//                     }
 //                   });
 //                 }
 //               });
@@ -402,10 +363,7 @@
 //     }
 //   };
 
-//   const focusLoginButton = (keyEvent: {
-//     key: string;
-//     preventDefault: () => void;
-//   }) => {
+//   const focusLoginButton = (keyEvent: { key: string; preventDefault: () => void }) => {
 //     if (keyEvent.key === 'Enter') {
 //       document.getElementById('loginButton')?.focus();
 //       setShowCircularLoader(true);
@@ -666,11 +624,11 @@
 // };
 
 // export default LoginCard;
-// 
+//
 // import React from "react";
 
 const LoginCard = () => {
-  console.log("login card loaded");
+  console.log('login card loaded');
   return <div>This is Login Card</div>;
 };
 
