@@ -1,4 +1,4 @@
-import { passwordMinLength } from "../configs/Login.config";
+import { passwordMinLength } from "./Login.constants";
 
 export const UiLables = {
     LABELS: {
