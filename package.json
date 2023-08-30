@@ -26,7 +26,7 @@
   "scripts": {
     "start:stage": "env-cmd -f .env.stage react-scripts start",
     "start:qa": "env-cmd -f .env.qa react-scripts start",
-    "start:production": "env-cmd -f .env.production react-scripts start",
+    "start:production": "set PORT=3001 && env-cmd -f .env.production react-scripts start",
     "start:prod": "yarn run build && serve -s build",
     "build": "react-scripts build",
     "build:stage": "env-cmd -f .env.stage react-scripts build",

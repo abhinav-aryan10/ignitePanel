@@ -31,7 +31,19 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<NavigateToRespectivePath />} />
+        <Route
+          path='/'
+          element={
+            <NavigateToRespectivePath
+              setLoginDetails={setLoginDetails}
+              setEulaDetails={setEulaDetails}
+              setProductDetails={setProductDetails}
+              setGeneralMessage={setGeneralMessage}
+              setIsLogoutOnAccessPanel={setIsLogoutOnAccessPanel}
+              productDetails={productDetails}
+            />
+          }
+        />
         <Route path={RoutePaths.LOGIN} element={<LoginContainer />}>
           <Route
             path={RoutePaths.LOGIN_CARD}
