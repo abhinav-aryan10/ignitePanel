@@ -364,7 +364,7 @@
 
 // export default GeneralMessage;
 
-import React from "react";
+// import React from "react";
 
 const GeneralMessage = () => {
   return <div>General Message</div>;

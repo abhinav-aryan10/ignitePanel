@@ -6,7 +6,7 @@ import { RoutePaths } from '../constants/Routepaths.constants';
 import getProductDetails, { getUserDetails } from '../services/Auth.service';
 import exitToDesktopUtil from '../utils/ExitToDesktop.util';
 import getExploreWpsDetails from '../services/exploreWps.service';
-import { logoutUser } from '../utils/AwsCognito.util';
+import { logoutUser } from '../utils/AwsCognito.util';;
 
 interface IProps {
   setLoginDetails: (data: any) => void;

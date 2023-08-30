@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { RoutePaths } from "../../../constants/Routepaths.constants";
 import UiLables from "../../../constants/UiLables.constants";
 import "./ValidationTooltip.scss";
-import React from "react";
+// import React from "react";
 
 interface IProps {
   errorMessage: string;
