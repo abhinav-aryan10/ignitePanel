@@ -5,7 +5,7 @@
 import React from 'react';
 
 // eslint-disable-next-line no-empty-pattern
-const NavigateToRespectivePath: React.FC = ({}) => {
+function NavigateToRespectivePath () {
 
   // return <div className="navigate_to_respective_component_container" />;
   return (
