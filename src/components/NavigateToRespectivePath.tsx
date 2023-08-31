@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import log from 'loglevel';
 import { RoutePaths } from '../constants/Routepaths.constants';
@@ -192,31 +192,31 @@ const NavigateToRespectivePath: React.FC<IProps> = ({
         })
         .catch((error) => {
           log.error(error);
-          if (error.response.status === 422) {
-            logoutUser();
-            localStorage.removeItem('userIdToken');
-            localStorage.removeItem('refreshToken');
-            localStorage.removeItem('userIdtokenExpiry');
-            localStorage.removeItem('email');
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('userId');
-            localStorage.removeItem('sub');
-            sessionStorage.removeItem('upgradePopupDisplayed');
-            setGeneralMessage({
-              errorCode: 'API_EMAIL_UPDATE_1001',
-              PrimaryBtnFn: continueToLoginCard,
-              SecondaryBtnFn: ''
-            });
-            setPath(RoutePaths.GENERAL_MESSAGE);
-          } else {
-            navigate(RoutePaths.GENERAL_MESSAGE, {
-              state: {
-                errorCode: 'API-1001',
-                P2: error.response.status,
-                P3: error.message
-              }
-            });
-          }
+          // if (error.response.status === 422) {
+          //   logoutUser();
+          //   localStorage.removeItem('userIdToken');
+          //   localStorage.removeItem('refreshToken');
+          //   localStorage.removeItem('userIdtokenExpiry');
+          //   localStorage.removeItem('email');
+          //   localStorage.removeItem('accessToken');
+          //   localStorage.removeItem('userId');
+          //   localStorage.removeItem('sub');
+          //   sessionStorage.removeItem('upgradePopupDisplayed');
+          //   setGeneralMessage({
+          //     errorCode: 'API_EMAIL_UPDATE_1001',
+          //     PrimaryBtnFn: continueToLoginCard,
+          //     SecondaryBtnFn: ''
+          //   });
+          //   setPath(RoutePaths.GENERAL_MESSAGE);
+          // } else {
+          //   navigate(RoutePaths.GENERAL_MESSAGE, {
+          //     state: {
+          //       errorCode: 'API-1001',
+          //       P2: error.response.status,
+          //       P3: error.message
+          //     }
+          //   });
+          // }
         });
     } else {
       console.log('No internet');
