@@ -7,7 +7,6 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.4",
-    "@types/node": "^16.18.42",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "amazon-cognito-identity-js": "^6.3.5",
@@ -23,9 +22,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start": "set PORT=3002 && react-scripts start",
     "start:stage": "env-cmd -f .env.stage react-scripts start",
     "start:qa": "env-cmd -f .env.qa react-scripts start",
-    "start:production": "env-cmd -f .env.production react-scripts start",
+    "start:production": "set PORT=3001 && env-cmd -f .env.production react-scripts start",
     "start:prod": "yarn run build && serve -s build",
     "build": "react-scripts build",
     "build:stage": "env-cmd -f .env.stage react-scripts build",
@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^20.5.7",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.2.3",

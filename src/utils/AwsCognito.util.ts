@@ -1,7 +1,7 @@
-import { defaultTemporaryPassword } from '../services/BaseUrl'
+import { defaultTemporaryPassword } from '../services/BaseUrl';
 
 /* eslint-disable prefer-promise-reject-errors */
-const AmazonCognitoIdentity = require('amazon-cognito-identity-js')
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 /* This function might be helpful after API gateway integration */
 // function asyncAuthenticateUser(cognitoUser, cognitoAuthenticationDetails) {
@@ -32,7 +32,7 @@ DOCS:
 const poolData = {
   UserPoolId: 'us-east-1_P0YaAdTXE',
   ClientId: '7akrqreb1vu3o4rb653022190k'
-}
+};
 
 // // QA
 // const poolData = {
@@ -54,12 +54,12 @@ export default async function getApiAccessToken(requestBody: any) {
   //   Pool: userPool,
   // });
 
-  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
   const user = new AmazonCognitoIdentity.CognitoUser({
     Username: requestBody.email,
     Pool: userPoolDetail
-  })
+  });
 
   return new Promise((resolve, reject) => {
     user.authenticateUser(
@@ -78,106 +78,106 @@ export default async function getApiAccessToken(requestBody: any) {
             refreshToken: '',
             exp: '',
             sub: ''
-          }
+          };
 
           // console.log('data resp from cognito', res);
 
           // console.log('User dets');
           // console.log(cognitoUserDetails.user);
 
-          data.token = res.getAccessToken().getJwtToken()
-          data.idToken = res.getIdToken().getJwtToken()
-          data.refreshToken = res.getRefreshToken().getToken()
-          data.exp = res.getIdToken().payload.exp
-          data.userName = res.getIdToken().payload.name
-          data.email = res.getIdToken().payload.email
-          data.sub = res.getIdToken().payload.sub
+          data.token = res.getAccessToken().getJwtToken();
+          data.idToken = res.getIdToken().getJwtToken();
+          data.refreshToken = res.getRefreshToken().getToken();
+          data.exp = res.getIdToken().payload.exp;
+          data.userName = res.getIdToken().payload.name;
+          data.email = res.getIdToken().payload.email;
+          data.sub = res.getIdToken().payload.sub;
 
-          resolve({ status: 'logged-in', data })
+          resolve({ status: 'logged-in', data });
         },
         onFailure: (rejectError: any) => {
           reject({
             rejectErrorCode: rejectError.code,
             rejectError: rejectError.message
-          })
+          });
           // reject({
           //   rejectErrorCode: 'InternalFailure',
           //   rejectError: 'Internal Server error',
           // });
         },
         newPasswordRequired: (userAttributes: any) => {
-          delete userAttributes.email_verified
-          delete userAttributes.email
-          delete userAttributes.name
+          delete userAttributes.email_verified;
+          delete userAttributes.email;
+          delete userAttributes.name;
 
           user.completeNewPasswordChallenge('Test@123', userAttributes, {
             onFailure: (err: any) => console.log(err),
             onSuccess: (res: any) => console.log(res)
-          })
-          resolve({ status: 're-login' })
+          });
+          resolve({ status: 're-login' });
         }
       }
-    )
-  })
+    );
+  });
 }
 
 export async function refreshTokenUtil() {
-  let userEmail = localStorage.getItem('email') as string
+  let userEmail = localStorage.getItem('email') as string;
 
   if (userEmail === '' || userEmail === undefined) {
-    userEmail = localStorage.getItem('userEmail') as string
+    userEmail = localStorage.getItem('userEmail') as string;
   }
-  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
   const user = new AmazonCognitoIdentity.CognitoUser({
     Username: userEmail,
     Pool: userPoolDetail
-  })
+  });
 
   return new Promise((resolve, reject) => {
-    const refreshToken = localStorage.getItem('refreshToken') as string
+    const refreshToken = localStorage.getItem('refreshToken') as string;
 
     const refreshtokenObject = new AmazonCognitoIdentity.CognitoRefreshToken({
       RefreshToken: refreshToken
-    })
+    });
 
     user.refreshSession(refreshtokenObject, function (err: any, session: any) {
       if (err) {
-        reject({ status: err.message })
+        reject({ status: err.message });
       }
       if (session) {
-        const idToken = session.getIdToken().getJwtToken()
+        const idToken = session.getIdToken().getJwtToken();
 
-        const accessToken = session.getAccessToken().getJwtToken()
-        const expiry = session.getIdToken().payload.exp
+        const accessToken = session.getAccessToken().getJwtToken();
+        const expiry = session.getIdToken().payload.exp;
 
-        localStorage.removeItem('accessToken')
-        localStorage.setItem('accessToken', accessToken)
-        localStorage.removeItem('userIdToken')
-        localStorage.setItem('userIdToken', idToken)
-        localStorage.removeItem('userIdtokenExpiry')
-        localStorage.setItem('userIdtokenExpiry', expiry)
+        localStorage.removeItem('accessToken');
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.removeItem('userIdToken');
+        localStorage.setItem('userIdToken', idToken);
+        localStorage.removeItem('userIdtokenExpiry');
+        localStorage.setItem('userIdtokenExpiry', expiry);
 
-        resolve({ status: 'success' })
+        resolve({ status: 'success' });
       }
-    })
-  })
+    });
+  });
 }
 
 export async function logoutUser() {
-  const userEmail = localStorage.getItem('email') as string
-  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+  const userEmail = localStorage.getItem('email') as string;
+  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
   const user = new AmazonCognitoIdentity.CognitoUser({
     Username: userEmail,
     Pool: userPoolDetail
-  })
+  });
 
   return new Promise((resolve) => {
-    console.log('logging out')
-    user.signOut()
-    resolve({ status: 'success' })
-  })
+    console.log('logging out');
+    user.signOut();
+    resolve({ status: 'success' });
+  });
 
   // TODO: remove , it is to check if session is ended
   // setTimeout(() => {
@@ -195,79 +195,79 @@ export async function logoutUser() {
 }
 
 export async function sendResetPasswordLink(userEmail: any) {
-  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
   const user = new AmazonCognitoIdentity.CognitoUser({
     Username: userEmail.email,
     Pool: userPoolDetail
-  })
+  });
 
   return new Promise((resolve, reject) => {
     user.forgotPassword({
       onSuccess: (data: any) => {
         // successfully initiated reset password request
-        console.log(`CodeDeliveryData from forgotPassword: ${JSON.stringify(data)}`)
-        resolve({ status: 'success' })
+        console.log(`CodeDeliveryData from forgotPassword: ${JSON.stringify(data)}`);
+        resolve({ status: 'success' });
       },
       onFailure: (err: any) => {
-        console.log(err.message || JSON.stringify(err))
-        reject({ status: err.message })
+        console.log(err.message || JSON.stringify(err));
+        reject({ status: err.message });
       }
-    })
-  })
+    });
+  });
 }
 
 export async function changeTemporaryPassword(requestBody: any) {
-  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData);
   return new Promise((resolve, reject) => {
-    const currentUser = userPoolDetail.getCurrentUser()
+    const currentUser = userPoolDetail.getCurrentUser();
 
-    let oldPassword = String(sessionStorage.getItem('temporaryPassword')) || '' // Random password
+    let oldPassword = String(sessionStorage.getItem('temporaryPassword')) || ''; // Random password
     // In case of persistant login
     if (oldPassword === '' || oldPassword === null || oldPassword === 'null') {
-      oldPassword = defaultTemporaryPassword
+      oldPassword = defaultTemporaryPassword;
       // persistant login set hatch123 to session storage so reset can be called
-      sessionStorage.setItem('temporaryPassword', defaultTemporaryPassword)
+      sessionStorage.setItem('temporaryPassword', defaultTemporaryPassword);
     }
     if (currentUser) {
       currentUser.getSession((err: any) => {
         if (err) {
-          console.log(err)
-          reject({ status: err.message })
+          console.log(err);
+          reject({ status: err.message });
         } else {
           currentUser.changePassword(oldPassword, requestBody.passwordConfirm, (error: any, result: any) => {
             if (error) {
-              reject({ status: error.message })
+              reject({ status: error.message });
             } else {
-              resolve({ status: result })
+              resolve({ status: result });
             }
-          })
+          });
         }
-      })
+      });
     }
-  })
+  });
 }
 
 export async function resetTemporaryPassword(requestBody: any) {
-  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData)
+  const userPoolDetail = new AmazonCognitoIdentity.CognitoUserPool(poolData);
   return new Promise((resolve, reject) => {
-    const currentUser = userPoolDetail.getCurrentUser()
+    const currentUser = userPoolDetail.getCurrentUser();
 
     if (currentUser) {
       currentUser.getSession((err: any) => {
         if (err) {
-          console.log(err)
-          reject({ status: err.message })
+          console.log(err);
+          reject({ status: err.message });
         } else {
           currentUser.changePassword(requestBody.passwordConfirm, requestBody.passwordToReset, (error: any, result: any) => {
             if (error) {
-              reject({ status: error.message })
+              reject({ status: error.message });
             } else {
-              resolve({ status: result })
+              resolve({ status: result });
             }
-          })
+          });
         }
-      })
+      });
     }
-  })
+  });
 }
