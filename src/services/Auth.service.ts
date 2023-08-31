@@ -33,10 +33,10 @@ const reqObj = {
 export default async function getProductDetails() {
   if (serveFromMockoon) {
     const res = await BaseUrl.post('api/v3/product-details', options);
-    const eulaLatestVersion = localStorage.setItem(
-      "eulaLatestVersion",
-      res.data.payload.data.eula.version
-    );
+    // const eulaLatestVersion = localStorage.setItem(
+    //   "eulaLatestVersion",
+    //   res.data.payload.data.eula.version
+    // );
     return res.data;
   }
   const res = await axios.post(`${baseURL}/${version}/product-details`, reqObj, optionForProductDetails);

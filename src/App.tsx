@@ -1,8 +1,8 @@
-// import './App.scss';
-import React from 'react';
+import './App.scss';
+import React, { useState } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { MemoryRouter as Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import NavigateToRespectivePath from './components/NavigateToRespectivePath';
 import { RoutePaths } from './constants/Routepaths.constants';
 import LoginContainer from './pages/login-container/LoginContainer';
@@ -15,19 +15,19 @@ import ChangePassword from './components/login/change-password/ChangePassword';
 import ChangePasswordConfirmation from './components/login/change-password-confirmation/ChangePasswordConfirmation';
 
 function App() {
-  // const [productDetails, setProductDetails] = useState({});
-  // const [loginDetails, setLoginDetails] = useState({});
-  // const [eulaDetails, setEulaDetails] = useState({});
-  // const [generalMessage, setGeneralMessage] = useState({});
-  // const [isLogoutOnAccessPanel, setIsLogoutOnAccessPanel] = useState(true);
-  // const [displayGearBox, setDisplayGearBox] = useState(false);
-  // const setLoginDetailsRef = (loginData: any) => {
-  //   setLoginDetails(loginData);
-  // };
+  const [productDetails, setProductDetails] = useState({});
+  const [loginDetails, setLoginDetails] = useState({});
+  const [eulaDetails, setEulaDetails] = useState({});
+  const [generalMessage, setGeneralMessage] = useState({});
+  const [isLogoutOnAccessPanel, setIsLogoutOnAccessPanel] = useState(true);
+  const [displayGearBox, setDisplayGearBox] = useState(false);
+  const setLoginDetailsRef = (loginData: any) => {
+    setLoginDetails(loginData);
+  };
 
-  // const setEulaDetailsRef = (eulaData: any) => {
-  //   setEulaDetails(eulaData);
-  // };
+  const setEulaDetailsRef = (eulaData: any) => {
+    setEulaDetails(eulaData);
+  };
   return (
     <BrowserRouter>
       <Routes>
@@ -44,17 +44,30 @@ function App() {
             />
           }
         />
-        <Route path={RoutePaths.LOGIN} element={<LoginContainer />}>
+        <Route
+          path={RoutePaths.LOGIN}
+          element={
+            <LoginContainer
+              displayGearBox={displayGearBox}
+              productDetails={productDetails}
+              loginDetails={loginDetails}
+              isLogoutOnAccessPanel={isLogoutOnAccessPanel}
+              setLoginDetails={setLoginDetailsRef}
+              setIsLogoutOnAccessPanel={setIsLogoutOnAccessPanel}
+              setGeneralMessage={setGeneralMessage}
+            />
+          }
+        >
           <Route
             path={RoutePaths.LOGIN_CARD}
             element={
               <LoginCard
-              // setLoginDetails={setLoginDetailsRef}
-              // setEulaDetails={setEulaDetailsRef}
-              // productDetails={productDetails}
-              // setGeneralMessage={setGeneralMessage}
-              // setIsLogoutOnAccessPanel={setIsLogoutOnAccessPanel}
-              // setDisplayGearBox={setDisplayGearBox}
+                setLoginDetails={setLoginDetailsRef}
+                setEulaDetails={setEulaDetailsRef}
+                productDetails={productDetails}
+                setGeneralMessage={setGeneralMessage}
+                setIsLogoutOnAccessPanel={setIsLogoutOnAccessPanel}
+                setDisplayGearBox={setDisplayGearBox}
               />
             }
           />
