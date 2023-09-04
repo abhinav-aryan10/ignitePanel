@@ -1,32 +1,36 @@
-// webpack.config.js
 const path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  // ... other webpack config options ...
-
+  mode: 'development',
+  entry: './index.tsx',
+  devtool: 'inline-source-map',
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js'
+  },
+  devServer: {
+    static: './dist'
+  },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            // ... your babel options ...
-          },
-        },
+        loader: 'babel-loader'
       },
-    ],
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
   },
-
   resolve: {
-    alias: {
-      // Create an alias to exclude test files from being resolved
-      // Adjust the path based on your project structure
-      // This assumes your test files have the .test.js extension
-      'src': path.resolve(__dirname, 'src'),
-    },
+    extensions: ['.tsx', '.ts', '.js']
   },
-
-  // ... other webpack config options ...
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html'
+    })
+  ]
 };
