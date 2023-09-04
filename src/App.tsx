@@ -74,7 +74,7 @@ function App() {
           <Route path={RoutePaths.EULA} element={<Eula />} />
           <Route path={RoutePaths.PRIVACY_POLICY} element={<PrivacyPolicy />} />
           <Route path={RoutePaths.FORGET_PASSWORD} element={<ForgetPassword />} />
-          <Route path={RoutePaths.FORGET_PASSWORD_CONFIRM} element={<ForgetPasswordConfirmation />} />
+          <Route path={RoutePaths.FORGET_PASSWORD_CONFIRM} element={<ForgetPasswordConfirmation productDetails={productDetails} />} />
           <Route path={RoutePaths.CHANGE_PASSWORD} element={<ChangePassword />} />
           <Route path={RoutePaths.CHANGE_PASSWORD_CONFIRM} element={<ChangePasswordConfirmation />} />
         </Route>

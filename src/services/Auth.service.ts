@@ -22,7 +22,9 @@ const optionForProductDetails = {
     'security-code': 'hatch_development',
     'product-short-name': 'IGT',
     // 'app-version': applicationVersion,
-    'device-os': 'windows'
+    'device-os': 'windows',
+    'hatch-asset-Id': 'ABCDEF',
+    'app-version': '3.0.0'
   }
 };
 
