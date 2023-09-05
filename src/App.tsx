@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import NavigateToRespectivePath from './components/NavigateToRespectivePath';
-import { RoutePaths } from './constants/Routepaths.constants';
+import { SpecificPaths } from './constants/Routepaths.constants';
 import LoginContainer from './pages/login-container/LoginContainer';
 import LoginCard from './components/login/login-card/LoginCard';
 import Eula from './components/generic/eula/Eula';
@@ -45,7 +45,7 @@ function App() {
           }
         />
         <Route
-          path={RoutePaths.LOGIN}
+          path={SpecificPaths.LOGIN}
           element={
             <LoginContainer
               displayGearBox={displayGearBox}
@@ -59,7 +59,7 @@ function App() {
           }
         >
           <Route
-            path={RoutePaths.LOGIN_CARD}
+            path={SpecificPaths.LOGIN_CARD}
             element={
               <LoginCard
                 setLoginDetails={setLoginDetailsRef}
@@ -71,12 +71,12 @@ function App() {
               />
             }
           />
-          <Route path={RoutePaths.EULA} element={<Eula />} />
-          <Route path={RoutePaths.PRIVACY_POLICY} element={<PrivacyPolicy />} />
-          <Route path={RoutePaths.FORGET_PASSWORD} element={<ForgetPassword />} />
-          <Route path={RoutePaths.FORGET_PASSWORD_CONFIRM} element={<ForgetPasswordConfirmation productDetails={productDetails} />} />
-          <Route path={RoutePaths.CHANGE_PASSWORD} element={<ChangePassword />} />
-          <Route path={RoutePaths.CHANGE_PASSWORD_CONFIRM} element={<ChangePasswordConfirmation />} />
+          <Route path={SpecificPaths.EULA} element={<Eula />} />
+          <Route path={SpecificPaths.PRIVACY_POLICY} element={<PrivacyPolicy />} />
+          <Route path={SpecificPaths.FORGET_PASSWORD} element={<ForgetPassword />} />
+          <Route path={SpecificPaths.FORGET_PASSWORD_CONFIRM} element={<ForgetPasswordConfirmation productDetails={productDetails} />} />
+          <Route path={SpecificPaths.CHANGE_PASSWORD} element={<ChangePassword />} />
+          <Route path={SpecificPaths.CHANGE_PASSWORD_CONFIRM} element={<ChangePasswordConfirmation />} />
         </Route>
       </Routes>
     </BrowserRouter>
