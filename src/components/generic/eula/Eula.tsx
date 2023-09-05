@@ -1,14 +1,7 @@
-// /* eslint-disable react/style-prop-object */
-// /* eslint-disable promise/no-nesting */
-// /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-// /* eslint-disable import/no-named-as-default */
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable react-hooks/exhaustive-deps */
-// /* eslint-disable import/no-unresolved */
-// /* eslint-disable promise/always-return */
+
 // import { useLocation, useNavigate } from 'react-router-dom';
 // import { useEffect, useState } from 'react';
-// import './Eula.scss';
+import './Eula.scss';
 // import UiLables from 'renderer/constants/UiLables.constants';
 // import buttonClickSound from 'renderer/utils/ButtonClick.util';
 // import { acceptEula } from 'renderer/services/Auth.service';
@@ -443,7 +436,13 @@
 // import React from "react";
 
 const Eula = () => {
-  return <div>This is Eula Page</div>;
+  return (
+    <>
+    <div className='eula_page_container'>
+      Eula Page
+    </div>
+    </>
+  );
 };
 
 export default Eula;
