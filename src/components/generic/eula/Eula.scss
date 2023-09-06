@@ -1,111 +1,141 @@
-@import 'renderer/styles/Constants.style.scss';
+@import '../../../styles/Constants.style.scss';
+
+// .eula_page_container {
+//   .eula_page_heading {
+//     padding: 15px 0;
+//     font-family: $font-family;
+//     font-weight: $font-weight-extrabold;
+//     color: $color-yellow;
+//     font-size: 50pt;
+//     text-align: center;
+//   }
+//   .eula_version {
+//     margin-bottom: 16px;
+//     font-family: $font-family;
+//     font-weight: $font-weight-normal;
+//     padding-bottom: 5px;
+//     color: $color-white;
+//     font-size: 24pt;
+//     text-align: center;
+//   }
+//   .eula_text_area {
+//     font-family: $font-family;
+//     background: $color-white;
+//     width: 1024px;
+//     height: 800px;
+//     padding-left: 15px;
+//     overflow-x: hidden;
+//     overflow-y: auto;
+//     margin: auto;
+//     border: 1px solid $color-black;
+//     .eula_page_content {
+//       margin: 10px;
+//       text-align: justify;
+//       padding: 10px;
+//       font-family: $font-family;
+//       font-size: 13pt;
+//     }
+//   }
+//   .eula_btn_container {
+//     margin: 10px;
+//     text-align: center;
+//     display: block;
+//     padding-block: 20px;
+//     margin-block: auto;
+//     .eula_btn_decline {
+//       font-weight: $font-weight-extrabold;
+//       text-align: center;
+//       stroke: $color-white;
+//       margin-right: 10px;
+//       height: 43px;
+//       width: 180px;
+//       font-size: 16pt;
+//     }
+//     .eula_btn_accept {
+//       font-weight: $font-weight-extrabold;
+//       stroke: $color-white;
+//       text-align: center;
+//       font-size: 18pt;
+//       width: 188px;
+//       height: 51px;
+//       margin-left: 10px;
+//     }
+//     :disabled {
+//       opacity: 25%;
+//       pointer-events: none;
+//     }
+//   }
+// }
+
+// @media only screen and (max-width: 1666px) {
+//   .eula_page_container {
+//     .eula_page_heading {
+//       padding: 10px 0 6px 0;
+//       font-size: 26pt;
+//     }
+//     .eula_version {
+//       margin-bottom: 10px;
+//       font-size: 13pt;
+//     }
+//     .eula_text_area {
+//       width: 60%;
+//       height: calc(100vh - 192px);
+//       .eula_page_content {
+//         font-size: 11pt;
+//         margin: 10px;
+//         padding: 6px;
+//       }
+//     }
+//     .eula_btn_container {
+//       margin: 0px;
+//       padding-block: 20px;
+//       .eula_btn_decline {
+//         margin-right: 8px;
+//         height: 34px;
+//         width: 124px;
+//         font-size: 13pt;
+//         font-weight: $font-weight-bolder;
+//       }
+//       .eula_btn_accept {
+//         font-size: 14pt;
+//         width: 124px;
+//         height: 36px;
+//         margin-left: 10px;
+//         font-weight: $font-weight-bolder;
+//       }
+//       :disabled {
+//         opacity: 25%;
+//       }
+//     }
+//   }
+// }
+
 
 .eula_page_container {
-  .eula_page_heading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $color-white;
+  height: 1788px;
+  width: 1874px;
+  border-radius: 50px;
+  stroke-width: 3pt;
+  border: 3px solid black;
+  .eula_page_heading{
     padding: 15px 0;
+    margin-top: 40px;
     font-family: $font-family;
     font-weight: $font-weight-extrabold;
-    color: $color-yellow;
-    font-size: 50pt;
+    font-size: 72pt;
+    color: $color-blue;
     text-align: center;
   }
-  .eula_version {
-    margin-bottom: 16px;
+  .eula_version{
+    text-align: center;
     font-family: $font-family;
-    font-weight: $font-weight-normal;
-    padding-bottom: 5px;
-    color: $color-white;
-    font-size: 24pt;
-    text-align: center;
+    font-weight: $font-weight-bolder;
+    font-size: 36pt;
   }
-  .eula_text_area {
-    font-family: $font-family;
-    background: $color-white;
-    width: 1024px;
-    height: 800px;
-    padding-left: 15px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    margin: auto;
-    border: 1px solid $color-black;
-    .eula_page_content {
-      margin: 10px;
-      text-align: justify;
-      padding: 10px;
-      font-family: $font-family;
-      font-size: 13pt;
-    }
-  }
-  .eula_btn_container {
-    margin: 10px;
-    text-align: center;
-    display: block;
-    padding-block: 20px;
-    margin-block: auto;
-    .eula_btn_decline {
-      font-weight: $font-weight-extrabold;
-      text-align: center;
-      stroke: $color-white;
-      margin-right: 10px;
-      height: 43px;
-      width: 180px;
-      font-size: 16pt;
-    }
-    .eula_btn_accept {
-      font-weight: $font-weight-extrabold;
-      stroke: $color-white;
-      text-align: center;
-      font-size: 18pt;
-      width: 188px;
-      height: 51px;
-      margin-left: 10px;
-    }
-    :disabled {
-      opacity: 25%;
-      pointer-events: none;
-    }
-  }
-}
-
-@media only screen and (max-width: 1666px) {
-  .eula_page_container {
-    .eula_page_heading {
-      padding: 10px 0 6px 0;
-      font-size: 26pt;
-    }
-    .eula_version {
-      margin-bottom: 10px;
-      font-size: 13pt;
-    }
-    .eula_text_area {
-      width: 60%;
-      height: calc(100vh - 192px);
-      .eula_page_content {
-        font-size: 11pt;
-        margin: 10px;
-        padding: 6px;
-      }
-    }
-    .eula_btn_container {
-      margin: 0px;
-      padding-block: 20px;
-      .eula_btn_decline {
-        margin-right: 8px;
-        height: 34px;
-        width: 124px;
-        font-size: 13pt;
-        font-weight: $font-weight-bolder;
-      }
-      .eula_btn_accept {
-        font-size: 14pt;
-        width: 124px;
-        height: 36px;
-        margin-left: 10px;
-        font-weight: $font-weight-bolder;
-      }
-      :disabled {
-        opacity: 25%;
-      }
-    }
-  }
+  
 }

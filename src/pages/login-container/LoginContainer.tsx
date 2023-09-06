@@ -118,16 +118,6 @@ const LoginContainer: React.FC<IProps> = ({
         </div>
       )}
       <Outlet />
-      <div>
-        {/* <Footer
-          productDetails={productDetails}
-          isTeacherDashboard={false}
-          userName=''
-          setLoginDetails={() => {
-            log.debug('no use');
-          }}
-        /> */}
-      </div>
       {Object.keys(loginDetails).length !== 0 && RoutePaths.GENERAL_MESSAGE === location.pathname && displayGearBox ? (
         <div>
           <div>

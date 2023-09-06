@@ -1,15 +1,8 @@
-// /* eslint-disable react/style-prop-object */
-// /* eslint-disable promise/no-nesting */
-// /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-// /* eslint-disable import/no-named-as-default */
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable react-hooks/exhaustive-deps */
-// /* eslint-disable import/no-unresolved */
-// /* eslint-disable promise/always-return */
+
 // import { useLocation, useNavigate } from 'react-router-dom';
-// import { useEffect, useState } from 'react';
-// import './Eula.scss';
-// import UiLables from 'renderer/constants/UiLables.constants';
+import { useEffect, useState } from 'react';
+import './Eula.scss';
+import UiLables from '../../../constants/UiLables.constants';
 // import buttonClickSound from 'renderer/utils/ButtonClick.util';
 // import { acceptEula } from 'renderer/services/Auth.service';
 // import log from 'loglevel';
@@ -442,8 +435,49 @@
 
 // import React from "react";
 
+
 const Eula = () => {
-  return <div>This is Eula Page</div>;
+  let hasVerticalScrollbar: boolean;
+  let scrollBarBottom: boolean;
+  let eulaButton: any;
+
+  const [down, setDown] = useState(false);
+  const [pressed, setPressed] = useState(false);
+  const [press, setPress] = useState(false);
+  const [bottom, setBottom] = useState(false);
+
+  const handleScroll = (e: any) => {
+    if (!bottom) {
+      scrollBarBottom =
+        e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+      setBottom(scrollBarBottom);
+    }
+    // if (Object.keys(loginDetails).length !== 0 && isEulaAccepted) {
+    //   startInactivityTimer();
+    // }
+  };
+  return (
+
+    <div className='eula_page_container'>
+    <div className="eula_page_heading">{UiLables.LABELS.EULA_HEADING}</div>
+    <div className="eula_version">
+        {/* {`${UiLables.LABELS.EULA} ${UiLables.LABELS.VERSION}: v${
+          eulaObject && eulaObject?.version
+            ? eulaObject.version
+            : productDetails?.eula?.version
+        }`} */}
+         {`${UiLables.LABELS.EULA} ${UiLables.LABELS.VERSION}: v 0.0.1`}
+      </div>
+      <div
+        className="eula_text_area"
+        id="eula_content"
+        tabIndex={0}
+        onScroll={handleScroll}
+      ></div>
+
+    </div>
+    
+  );
 };
 
 export default Eula;

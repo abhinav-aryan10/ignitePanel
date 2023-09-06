@@ -8,11 +8,12 @@
 @import './styles//Global.style.scss';
 
 body {
+  height: 1920px;
+    width: 3840px;
   position: relative;
-  color: $color-black;
-  background-image: url('../src/assets/images/teaching_guide_bg.svg');
+  background-image: url('../src/assets/images/teaching_guide_bg.png');
   margin: 0;
-  background-size: cover;
+  background-size:auto;
   font-family: $font-family;
   font-weight: $font-weight;
   overflow-y: hidden;
