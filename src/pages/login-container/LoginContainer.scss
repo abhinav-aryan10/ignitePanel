@@ -1,0 +1,52 @@
+@import '/src/styles/Constants.style.scss';
+
+.login_container {
+  height: 1920px;
+  margin: 0;
+  position: relative;
+//   .login_container_access_panel {
+//     position: fixed;
+//     bottom: 6px;
+//     right: 72px;
+//   }
+//   .login_container_icon {
+//     text-align: center;
+//     padding-top: 7%;
+//   }
+//   .login_container_gear {
+//     position: fixed;
+//     bottom: 0px;
+//     cursor: pointer;
+//     right: 0px;
+//     background-color: transparent;
+//     border: none;
+//     -webkit-tap-highlight-color: transparent;
+//     .login_container_gear_img_small {
+//       width: 95%;
+//     }
+//   }
+}
+
+// @media only screen and (max-width: 1666px) {
+//   .login_container {
+//     .login_container_access_panel {
+//       right: 56px;
+//     }
+//     .login_container_icon {
+//       padding-top: 6%;
+//       .login_container_icon_img {
+//         width: 14%;
+//       }
+//     }
+//     .login_container_gear {
+//       bottom: 3px;
+//       right: 3px;
+//       img {
+//         width: 44px;
+//       }
+//       .login_container_gear_img_small {
+//         width: 38px;
+//       }
+//     }
+//   }
+// }

@@ -112,7 +112,30 @@
 
 
 .eula_page_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: $color-white;
-  height: 1778.4926 px;
-  width: 1874.156 px;
+  height: 1788px;
+  width: 1874px;
+  border-radius: 50px;
+  stroke-width: 3pt;
+  border: 3px solid black;
+  .eula_page_heading{
+    padding: 15px 0;
+    margin-top: 40px;
+    font-family: $font-family;
+    font-weight: $font-weight-extrabold;
+    font-size: 72pt;
+    color: $color-blue;
+    text-align: center;
+  }
+  .eula_version{
+    text-align: center;
+    font-family: $font-family;
+    font-weight: $font-weight-bolder;
+    font-size: 36pt;
+  }
+  
 }
